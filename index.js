@@ -31,13 +31,24 @@ login(cred , function callback( err , api ) {
 		} else {
 			var messageString = message.body;
 
-			if ( messageString == "@dailyloli" ) {
-				var randomInt = Math.floor(Math.random() * (loliImages.length ));
-				api.sendMessage({ url : loliImages[ randomInt ] } , message.threadID,function(err,m){
+			switch ( messageString ) {
+				case "@dailyloli":
+					var randomInt = Math.floor(Math.random() * (loliImages.length ));
+					api.sendMessage({ url : loliImages[ randomInt ] } , message.threadID , function ( err , m ) {
+					});
+					break;
+				case "@cojo":
+					api.sendMessage("Calla cojo de mierda" , message.threadID , function ( err , m ) {
+					});
+					break;
+				case "@carita":
+					api.sendMessage(" ̿̿ ̿̿ ̿'̿'\̵͇̿̿\з= ( ▀ ͜͞ʖ▀) =ε/̵͇̿̿/’̿’̿ ̿ ̿̿ ̿̿ ̿̿" , message.threadID , function ( err , m ) {
+					});
+					break;
 
-				});
 			}
 
 		}
 	});
-});
+})
+;
