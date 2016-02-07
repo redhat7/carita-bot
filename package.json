@@ -1,0 +1,13 @@
+{
+  "name": "fbstbnbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+
+  },
+  "author": "Cshion",
+  "dependencies": {
+    "facebook-chat-api": "^1.0.6"
+  }
+}
