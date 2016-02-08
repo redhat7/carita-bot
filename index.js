@@ -14,7 +14,9 @@ var comandos = {
 	"@dado" : Comandos.getDado ,
 	"@cachudo" : Comandos.sendCachudo ,
 	"@calla" : Comandos.sendCalla,
-	"@garrita" : Comandos.sendGarrita
+	"@garrita" : Comandos.sendGarrita,
+	"@amor":Comandos.sendAmor,
+	"@cama" : Comandos.sendCama
 	//"@hernanON" : Comandos.hernanON ,
 	//"@hernanOFF" : Comandos.hernanOFF
 };

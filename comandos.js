@@ -15,15 +15,30 @@ module.exports = comandos;
  return apiInstance.addUserToGroup(hernanId , message.threadID , cb);
  };
  */
+comandos.sendCama = function(apiInstance,message,cb){
+	return apiInstance.sendMessage("La cama se enfria mayguiz..." , message.threadID , cb);
+};
 
+comandos.sendAmor    = function ( apiInstance , message , cb ) {
+	var participants = message.participantNames;
+	var user_1       = participants[ parseInt(Math.random() * participants.length) ];
+	var user_2       = participants[ parseInt(Math.random() * participants.length) ];
+	var response     = null;
+	if ( user_1 == user_2 ) {
+		response = user_1 + " y " + user_2 + " se aman en secreto .. FOREVERALONE";
+	} else {
+		response = user_1 + " y " + user_2 + " se aman en secreto";
+	}
 
+	return apiInstance.sendMessage(response , message.threadID , cb);
+}
 comandos.sendGarrita = function ( apiInstance , message , cb ) {
 	var garritaId = "144884792352454";
 	var response  = "Has activado el comando garrita , spameen la garrita perras";
 	return apiInstance.sendMessage({ body : response , sticker : garritaId } , message.threadID , cb);
 };
 
-comandos.getDado     = function ( apiInstance , message , cb ) {
+comandos.getDado = function ( apiInstance , message , cb ) {
 	var randomInt = Math.floor(Math.random() * 6 + 1);
 	var response  = message.senderName + " : " + randomInt;
 
@@ -44,8 +59,14 @@ comandos.sendCarita = function ( apiInstance , message , cb ) {
 
 comandos.dailyLoli = function ( apiInstance , message , cb ) {
 	var loliImages = [
+		"https://s-media-cache-ak0.pinimg.com/564x/0c/50/d3/0c50d3623d151391d6b68292f6c64896.jpg" ,
+		"http://i.imgur.com/5jVpkxp.jpg" ,
+		"https://s-media-cache-ak0.pinimg.com/564x/4a/72/31/4a72312853495a942a85e2667c3d4226.jpg" ,
+		"http://k18.kn3.net/taringa/6/3/3/8/6/9/6/sspawn/114.jpg" ,
+		"http://st-listas.20minutos.es/images/2013-11/371837/4231711_640px.jpg" ,
 		"http://k30.kn3.net/taringa/6/8/1/6/6/5/1/josephgranja/F64.jpg" ,
 		"http://k39.kn3.net/45DDB65DC.jpg" ,
+		"https://elrecavorfabron.files.wordpress.com/2011/12/caderas-asiaticas.jpg" ,
 		"https://s-media-cache-ak0.pinimg.com/564x/fa/28/2e/fa282e9fd98a1ec7e6bdd949e40656fb.jpg" ,
 		"http://k32.kn3.net/9/9/1/F/E/8/583.jpg" ,
 		"http://img.ifcdn.com/images/b163b3a2c9b05f8f822414efb8ca3b131688617c46601436f3695e8850983a30_3.jpg" ,
@@ -58,7 +79,7 @@ comandos.dailyLoli = function ( apiInstance , message , cb ) {
 		"http://c4.likes-media.com/img/9fb8712c976ba1ae1053eed52483db83.600x.jpg"
 	];
 
-	var randomInt = Math.floor(Math.random() * (loliImages.length ));
+	var randomInt = parseInt(Math.random() * (loliImages.length ));
 	return apiInstance.sendMessage({ url : loliImages[ randomInt ] } , message.threadID , cb);
 };
 
