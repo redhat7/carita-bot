@@ -13,7 +13,8 @@ var comandos = {
 	"@carita" : Comandos.sendCarita ,
 	"@dado" : Comandos.getDado ,
 	"@cachudo" : Comandos.sendCachudo ,
-	"@calla" : Comandos.sendCalla
+	"@calla" : Comandos.sendCalla,
+	"@garrita" : Comandos.sendGarrita
 	//"@hernanON" : Comandos.hernanON ,
 	//"@hernanOFF" : Comandos.hernanOFF
 };
@@ -36,7 +37,6 @@ chatApi(credentials , function ( err , api ) {
 						if ( err ) {
 							console.log(err);
 						} else {
-							console.log(response);
 						}
 					});
 				}

@@ -3,20 +3,27 @@ var comandos = {};
 module.exports = comandos;
 
 /*
-comandos.hernanOFF = function ( apiInstance , message , cb ) {
-	var hernanId = "1528669780781079";
-	console.log("Entro a hernan off");
-	return apiInstance.removeUserFromGroup(hernanId , message.threadID , cb);
+ comandos.hernanOFF = function ( apiInstance , message , cb ) {
+ var hernanId = "1528669780781079";
+ console.log("Entro a hernan off");
+ return apiInstance.removeUserFromGroup(hernanId , message.threadID , cb);
+ };
+
+ comandos.hernanON = function ( apiInstance , message , cb ) {
+ var hernanId = "1528669780781079";
+ console.log("Entro a hernan ON");
+ return apiInstance.addUserToGroup(hernanId , message.threadID , cb);
+ };
+ */
+
+
+comandos.sendGarrita = function ( apiInstance , message , cb ) {
+	var garritaId = "144884792352454";
+	var response  = "Has activado el comando garrita , spameen la garrita perras";
+	return apiInstance.sendMessage({ body : response , sticker : garritaId } , message.threadID , cb);
 };
 
-comandos.hernanON = function ( apiInstance , message , cb ) {
-	var hernanId = "1528669780781079";
-	console.log("Entro a hernan ON");
-	return apiInstance.addUserToGroup(hernanId , message.threadID , cb);
-};
-*/
-
-comandos.getDado = function ( apiInstance , message , cb ) {
+comandos.getDado     = function ( apiInstance , message , cb ) {
 	var randomInt = Math.floor(Math.random() * 6 + 1);
 	var response  = message.senderName + " : " + randomInt;
 
