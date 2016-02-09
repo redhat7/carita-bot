@@ -1,98 +1,114 @@
-var chatApi  = require("facebook-chat-api");
-var Comandos = require("./comandos");
+var chatApi  = require( "facebook-chat-api" );
+var Comandos = require( "./comandos" );
 
 var credentials = {
-	email : "aaron_esteban6@hotmail.com" ,
+	email :    "aaron_esteban6@hotmail.com" ,
 	password : "11200033"
 };
 
-
 var comandos = {
 	"@dailyloli" : {
-		handler : Comandos.dailyLoli ,
+		handler :     Comandos.dailyLoli ,
 		descripcion : "Envia una loli ;)"
 	} ,
-	"@cojo" : {
-		handler : Comandos.sendCojo ,
+	"@cojo" :      {
+		handler :     Comandos.sendCojo ,
 		descripcion : "Manda a la mierda a lucho"
 	} ,
-	"@carita" : {
-		handler : Comandos.sendCarita ,
+	"@carita" :    {
+		handler :     Comandos.sendCarita ,
 		descripcion : "( ͡° ͜ʖ ͡°)"
 	} ,
-	"@dado" : {
-		handler : Comandos.getDado ,
+	"@dado" :      {
+		handler :     Comandos.getDado ,
 		descripcion : "Tira un dado"
 	} ,
-	"@cachudo" : {
-		handler : Comandos.sendCachudo ,
+	"@cachudo" :   {
+		handler :     Comandos.sendCachudo ,
 		descripcion : "Caga a antonchi"
 	} ,
-	"@calla" : {
-		handler : Comandos.sendCalla ,
+	"@calla" :     {
+		handler :     Comandos.sendCalla ,
 		descripcion : "Calla al chupapinga"
 	} ,
-	"@garrita" : {
-		handler : Comandos.sendGarrita ,
+	"@garrita" :   {
+		handler :     Comandos.sendGarrita ,
 		descripcion : "Spamea la garrita"
 	} ,
-	"@amor" : {
-		handler : Comandos.sendAmor ,
+	"@amor" :      {
+		handler :     Comandos.sendAmor ,
 		descripcion : "Empareja maricos"
 	} ,
-	"@cama" : {
-		handler : Comandos.sendCama ,
+	"@cama" :      {
+		handler :     Comandos.sendCama ,
 		descripcion : "Invoca al doti"
 	} ,
-	"@morfosis" : {
-		handler : Comandos.sendMorfosis ,
+	"@morfosis" :  {
+		handler :     Comandos.sendMorfosis ,
 		descripcion : "Activa tu morfosis"
 	} ,
-	"@help" : {
-		handler : function ( apiInstance , message , cb ) {
+	"@Kappa" :     {
+		handler :     Comandos.sendTwitchEmote ,
+		description : "Kappa"
+	} ,
+	"@4Head" :     {
+		handler :     Comandos.sendTwitchEmote ,
+		description : "4Head"
+	} ,
+	"@Kreygasm" :  {
+		handler :     Comandos.sendTwitchEmote ,
+		description : "Kreygasm"
+	} ,
+	"@PogChamp" :  {
+		handler :     Comandos.sendTwitchEmote ,
+		description : "PogChamp"
+	} ,
+	"@chipi" :     {
+		handler:Comandos.sendChipi,
+		description : "Te mide la vaina"
+	} ,
+	"@help" :      {
+		handler : function( apiInstance , message , cb ) {
 			var self     = comandos;
 			var response = "";
-			console.log(self);
-			for ( var property in self ) {
-				if ( self.hasOwnProperty(property) ) {
+			console.log( self );
+			for( var property in self ) {
+				if( self.hasOwnProperty( property ) ) {
 
-					if ( self[ property ][ "descripcion" ] ) {
+					if( self[ property ][ "descripcion" ] ) {
 						response += property + " : " + self[ property ][ "descripcion" ];
 						response += "\n";
 					}
 				}
 			}
-			return apiInstance.sendMessage(response , message.threadID , cb);
+			return apiInstance.sendMessage( response , message.threadID , cb );
 		}
 	}
-	//"@hernanON" : Comandos.hernanON ,
-	//"@hernanOFF" : Comandos.hernanOFF
 };
 
-
-chatApi(credentials , function ( err , api ) {
-	if ( err ) {
-		console.error(err);
+chatApi( credentials , function( err , api ) {
+	if( err ) {
+		console.error( err );
 	} else {
 
-		api.listen(function ( err , message ) {
-			if ( err ) {
-				console.log(err);
+		api.listen( function( err , message ) {
+			if( err ) {
+				console.log( err );
 			} else {
 
 				var messageString = message.body || null;
 
-				if ( messageString && comandos[ messageString ] ) {
-					comandos[ messageString ].handler(api , message , function ( err , response ) {
-						if ( err ) {
-							console.log(err);
+				if( messageString && comandos[ messageString ] ) {
+					comandos[ messageString ].handler( api , message , function( err , response ) {
+						if( err ) {
+							console.log( err );
 						} else {
 
 						}
-					});
+					} );
 				}
 
 			}
-		});
+		} );
 	}
-});
+} );
