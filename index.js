@@ -49,23 +49,23 @@ var comandos = {
 	} ,
 	"@Kappa" :     {
 		handler :     Comandos.sendTwitchEmote ,
-		description : "Kappa"
+		descripcion : "Kappa"
 	} ,
 	"@4Head" :     {
 		handler :     Comandos.sendTwitchEmote ,
-		description : "4Head"
+		descripcion : "4Head"
 	} ,
 	"@Kreygasm" :  {
 		handler :     Comandos.sendTwitchEmote ,
-		description : "Kreygasm"
+		descripcion : "Kreygasm"
 	} ,
 	"@PogChamp" :  {
 		handler :     Comandos.sendTwitchEmote ,
-		description : "PogChamp"
+		descripcion : "PogChamp"
 	} ,
 	"@chipi" :     {
 		handler:Comandos.sendChipi,
-		description : "Te mide la vaina"
+		descripcion : "Te mide la vaina"
 	} ,
 	"@help" :      {
 		handler : function( apiInstance , message , cb ) {
