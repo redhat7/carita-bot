@@ -103,4 +103,20 @@ comandos.sendChipi = function( apiInstance , message , cb ) {
 
 	return apiInstance.sendMessage( response , message.threadID , cb );
 
-}
+};
+
+comandos.sendDenunciado = function( apiInstance , message , cb ) {
+
+	var directory = __dirname + "/denunciado/";
+
+	fs.readdir( directory , function( err , images ) {
+		if( images.length > 0 ) {
+			var randomInt = parseInt( Math.random() * (images.length) );
+			var file      = directory + images[ randomInt ];
+			return apiInstance.sendMessage( { attachment : fs.createReadStream( file ) } , message.threadID , cb );
+		} else {
+			return apiInstance.sendMessage( { body : "No hay denunciadas :'(" } , message.threadID , cb );
+		}
+	} );
+
+};
