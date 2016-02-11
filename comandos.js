@@ -63,8 +63,14 @@ comandos.dailyLoli = function( apiInstance , message , cb ) {
 
 };
 
-comandos.sendCojo = function( apiInstance , message , cb ) {
+comandos.sendCojo       = function( apiInstance , message , cb ) {
 	return apiInstance.sendMessage( "Calla cojo de mierda" , message.threadID , cb )
+};
+comandos.sendMorfosisGo = function( apiInstance , message , cb ) {
+	var directory = __dirname + "/morfosis/";
+	var file      = directory + "start.jpg";
+	return apiInstance.sendMessage( { attachment : fs.createReadStream( file ) } , message.threadID , cb );
+
 };
 
 comandos.sendMorfosis = function( apiInstance , message , cb ) {

@@ -47,6 +47,10 @@ var comandos = {
 		    handler :     Comandos.sendMorfosis ,
 		    descripcion : "Activa tu morfosis"
 	    } ,
+	    "@morfosis:go" :  {
+		    handler :     Comandos.sendMorfosisGo ,
+		    descripcion : "Activa tu morfosis"
+	    } ,
 	    "@Kappa" :     {
 		    handler :     Comandos.sendTwitchEmote ,
 		    descripcion : "Kappa"
