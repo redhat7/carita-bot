@@ -1,4 +1,6 @@
-var fs = require( "fs" );
+var fs      = require( "fs" );
+var request = require( "request" );
+var stream  = require( 'stream' );
 
 var comandos = {};
 
@@ -123,6 +125,26 @@ comandos.sendDenunciado = function( apiInstance , message , cb ) {
 		} else {
 			return apiInstance.sendMessage( { body : "No hay denunciadas :'(" } , message.threadID , cb );
 		}
+	} );
+};
+
+comandos.sendPokemon = function( apiInstance , message , cb ) {
+
+	var URL_BASE = "http://images.alexonsager.net/pokemon/fused/";
+	var pokemon1 = Math.floor( Math.random() * 151 + 1 );
+	var pokemon2 = Math.floor( Math.random() * 151 + 1 );
+
+	var randomURL = URL_BASE + pokemon1 + "/" + pokemon1 + "." + pokemon2 + ".png";
+	var tempPath  = __dirname + "/temp/tempPokemon.png";
+
+	request( { uri : randomURL , encoding : null } , function( err , response , body ) {
+		fs.writeFile( tempPath , body.toString( "binary" ) , "binary" , function( err ) {
+			if( err ) {
+				apiInstance.sendMessage( { body : "Error , kek" } , message.threadID , cb );
+			} else {
+				apiInstance.sendMessage( { attachment : fs.createReadStream( tempPath ) } , message.threadID , cb );
+			}
+		} )
 	} );
 
 };
