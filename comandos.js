@@ -129,22 +129,25 @@ comandos.sendDenunciado = function( apiInstance , message , cb ) {
 };
 
 comandos.sendPokemon = function( apiInstance , message , cb ) {
+	if( message.senderID != "1127442120" ) {
+		var URL_BASE = "http://images.alexonsager.net/pokemon/fused/";
+		var pokemon1 = Math.floor( Math.random() * 151 + 1 );
+		var pokemon2 = Math.floor( Math.random() * 151 + 1 );
 
-	var URL_BASE = "http://images.alexonsager.net/pokemon/fused/";
-	var pokemon1 = Math.floor( Math.random() * 151 + 1 );
-	var pokemon2 = Math.floor( Math.random() * 151 + 1 );
+		var randomURL = URL_BASE + pokemon1 + "/" + pokemon1 + "." + pokemon2 + ".png";
+		var tempPath  = __dirname + "/temp/tempPokemon.png";
 
-	var randomURL = URL_BASE + pokemon1 + "/" + pokemon1 + "." + pokemon2 + ".png";
-	var tempPath  = __dirname + "/temp/tempPokemon.png";
-
-	request( { uri : randomURL , encoding : null } , function( err , response , body ) {
-		fs.writeFile( tempPath , body.toString( "binary" ) , "binary" , function( err ) {
-			if( err ) {
-				apiInstance.sendMessage( { body : "Error , kek" } , message.threadID , cb );
-			} else {
-				apiInstance.sendMessage( { attachment : fs.createReadStream( tempPath ) } , message.threadID , cb );
-			}
-		} )
-	} );
-
+		//Nota : solucion chancha , necesita 1 archivo temporal , quizas se pueda mejorar usando stream , pero falta mas investigacion.
+		request( { uri : randomURL , encoding : null } , function( err , response , body ) {
+			fs.writeFile( tempPath , body.toString( "binary" ) , "binary" , function( err ) {
+				if( err ) {
+					apiInstance.sendMessage( { body : "Error , kek" } , message.threadID , cb );
+				} else {
+					apiInstance.sendMessage( { attachment : fs.createReadStream( tempPath ) } , message.threadID , cb );
+				}
+			} )
+		} );
+	} else {
+		apiInstance.sendMessage( { body : "Tu chupala." } , message.threadID , cb );
+	}
 };

@@ -6,6 +6,10 @@ var credentials = {
 	password : "11200033"
 };
 
+var options = {
+	pageID : "1742238002658513"
+};
+
 var comandos = {
 	"@dailyloli" :   {
 		handler :     Comandos.dailyLoli ,
@@ -98,7 +102,7 @@ var comandos = {
 	}
 };
 
-chatApi( credentials , function( err , api ) {
+chatApi( credentials , options , function( err , api ) {
 	if( err ) {
 		console.error( err );
 	} else {
