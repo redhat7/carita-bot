@@ -6,10 +6,6 @@ var credentials = {
 	password : "11200033"
 };
 
-var options = {
-	pageID : "1742238002658513"
-};
-
 var comandos = {
 	"@dailyloli" :   {
 		handler :     Comandos.dailyLoli ,
