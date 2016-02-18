@@ -98,7 +98,7 @@ var comandos = {
 	}
 };
 
-chatApi( credentials , options , function( err , api ) {
+chatApi( credentials , function( err , api ) {
 	if( err ) {
 		console.error( err );
 	} else {
