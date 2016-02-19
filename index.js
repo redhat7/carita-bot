@@ -104,23 +104,28 @@ chatApi( credentials , function( err , api ) {
 	} else {
 
 		api.listen( function( err , message ) {
-			if( err ) {
-				console.log( err );
-			} else {
+				if( err ) {
+					console.log( err );
+				} else {
 
-				var messageString = message.body || null;
+					var messageString = message.body || null;
+					if( message.senderID != "100002355213148" ) {
 
-				if( messageString && comandos[ messageString ] ) {
-					comandos[ messageString ].handler( api , message , function( err , response ) {
-						if( err ) {
-							console.log( err );
-						} else {
+						if( messageString && comandos[ messageString ] ) {
+							comandos[ messageString ].handler( api , message , function( err , response ) {
+								if( err ) {
+									console.log( err );
+								} else {
 
+								}
+							} );
 						}
-					} );
+					} else {
+						apiInstance.sendMessage( { body : "Tu chupala." } , message.threadID , cb );
+					}
 				}
-
 			}
-		} );
+		);
 	}
-} );
+} )
+;
