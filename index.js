@@ -121,7 +121,7 @@ chatApi( credentials , function( err , api ) {
 							} );
 						}
 					} else {
-						apiInstance.sendMessage( { body : "Tu chupala." } , message.threadID , cb );
+						api.sendMessage( { body : "Tu chupala." } , message.threadID , cb );
 					}
 				}
 			}
