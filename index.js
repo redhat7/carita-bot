@@ -107,7 +107,6 @@ chatApi( credentials , function( err , api ) {
 				if( err ) {
 					console.log( err );
 				} else {
-
 					var messageString = message.body || null;
 					if( message.senderID != "100002355213148" ) {
 
@@ -120,9 +119,6 @@ chatApi( credentials , function( err , api ) {
 								}
 							} );
 						}
-					} else {
-						api.sendMessage( { body : "Tu chupala." } , message.threadID , function() {
-						} );
 					}
 				}
 			}
