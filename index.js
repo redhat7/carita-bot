@@ -98,7 +98,7 @@ var comandos = {
 	}
 };
 
-chatApi( credentials , function( err , api ) {
+chatApi( credentials ,{forceLogin:true}, function( err , api ) {
 	if( err ) {
 		console.error( err );
 	} else {
