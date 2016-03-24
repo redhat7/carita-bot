@@ -2,9 +2,11 @@ var chatApi  = require( "facebook-chat-api" );
 var Comandos = require( "./comandos" );
 
 var credentials = {
-	email :    "aaron_esteban6@hotmail.com" ,
-	password : "11200033"
+	email :    process.env.EMAIL ,
+	password : process.env.PASS
 };
+console.log(process.env.EMAIL);
+console.log(process.env.PASS);
 
 var comandos = {
 	"@dailyloli" :   {
