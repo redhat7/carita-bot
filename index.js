@@ -103,11 +103,13 @@ var comandos = {
 chatApi(credentials , { forceLogin : true } , function (err , api) {
 	if ( err ) {
 		console.error(err);
+		process.exit(1);
 	} else {
 
 		api.listen(function (err , message) {
 				if ( err ) {
-					console.log(err);
+					console.error(err);
+					process.exit(1);
 				} else {
 
 					var messageString = message.body || null;
