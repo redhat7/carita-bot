@@ -112,7 +112,7 @@ chatApi(credentials , { forceLogin : true } , function (err , api) {
 
 					var messageString = message.body || null;
 					//id hernan :v
-					if ( message.senderID != "100002355213148" ) {
+					if ( message.senderID != "0" ) {
 
 						if ( messageString && comandos[ messageString ] ) {
 							comandos[ messageString ].handler(api , message , function (err , response) {
