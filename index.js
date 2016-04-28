@@ -102,14 +102,12 @@ var comandos = {
 
 chatApi(credentials , { forceLogin : true } , function (err , api) {
 	if ( err ) {
-		console.error(err);
-		process.exit(1);
+		throw err;
 	} else {
 
 		api.listen(function (err , message) {
 				if ( err ) {
-					console.error(err);
-					process.exit(1);
+					throw err;
 				} else {
 
 					var messageString = message.body || null;
@@ -119,7 +117,7 @@ chatApi(credentials , { forceLogin : true } , function (err , api) {
 						if ( messageString && comandos[ messageString ] ) {
 							comandos[ messageString ].handler(api , message , function (err , response) {
 								if ( err ) {
-									console.log(err);
+									throw err;
 								} else {
 
 								}
