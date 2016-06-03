@@ -35,12 +35,11 @@ var comandos = {
 		handler : Comandos.sendGarrita ,
 		descripcion : "Spamea la garrita"
 	} ,
-	/*
+	
 	"@amor" : {
 		handler : Comandos.sendAmor ,
 		descripcion : "Empareja maricos"
 	} ,
-	*/
 	"@cama" : {
 		handler : Comandos.sendCama ,
 		descripcion : "Invoca al doti"
@@ -81,11 +80,18 @@ var comandos = {
 		handler : Comandos.sendPokemon ,
 		descripcion : "Lanza una fusion random de pokemones"
 	} ,
+	"@hernanOn" : {
+		handler : Comandos.switchHernan(true) ,
+		descripcion : "Enciende subnormales"
+	} ,
+	"@hernanOff" : {
+		handler : Comandos.switchHernan(false) ,
+		descripcion : "Apaga subnormales"
+	} ,
 	"@help" : {
-		handler : function (apiInstance , message , cb) {
+		handler : function ( apiInstance , message , cb ) {
 			var self     = comandos;
 			var response = "";
-			console.log(self);
 			for ( var property in self ) {
 				if ( self.hasOwnProperty(property) ) {
 
@@ -100,22 +106,21 @@ var comandos = {
 	}
 };
 
-chatApi(credentials , { forceLogin : true } , function (err , api) {
+chatApi(credentials , { forceLogin : true } , function ( err , api ) {
 	if ( err ) {
 		throw err;
 	} else {
 
-		api.listen(function (err , message) {
+		api.listen(function ( err , message ) {
 				if ( err ) {
 					throw err;
 				} else {
 
 					var messageString = message.body || null;
-					//id hernan :v
 					if ( message.senderID != "0" ) {
 
 						if ( messageString && comandos[ messageString ] ) {
-							comandos[ messageString ].handler(api , message , function (err , response) {
+							comandos[ messageString ].handler(api , message , function ( err , response ) {
 								if ( err ) {
 									throw err;
 								} else {
