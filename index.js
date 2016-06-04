@@ -1,137 +1,33 @@
-var chatApi  = require("facebook-chat-api");
-var Comandos = require("./comandos");
+var chatApi      = require("facebook-chat-api");
+var listComandos = require("./list");
 
 var credentials = {
 	email : process.env.EMAIL ,
 	password : process.env.PASS
 };
 
-var comandos = {
-	"@dailyloli" : {
-		handler : Comandos.dailyLoli ,
-		descripcion : "Envia una loli ;)"
-	} ,
-	"@cojo" : {
-		handler : Comandos.sendCojo ,
-		descripcion : "Manda a la mierda a lucho"
-	} ,
-	"@carita" : {
-		handler : Comandos.sendCarita ,
-		descripcion : "( ͡° ͜ʖ ͡°)"
-	} ,
-	"@dado" : {
-		handler : Comandos.getDado ,
-		descripcion : "Tira un dado"
-	} ,
-	"@cachudo" : {
-		handler : Comandos.sendCachudo ,
-		descripcion : "Caga a antonchi"
-	} ,
-	"@calla" : {
-		handler : Comandos.sendCalla ,
-		descripcion : "Calla al chupapinga"
-	} ,
-	"@garrita" : {
-		handler : Comandos.sendGarrita ,
-		descripcion : "Spamea la garrita"
-	} ,
-	
-	"@amor" : {
-		handler : Comandos.sendAmor ,
-		descripcion : "Empareja maricos"
-	} ,
-	"@cama" : {
-		handler : Comandos.sendCama ,
-		descripcion : "Invoca al doti"
-	} ,
-	"@morfosis" : {
-		handler : Comandos.sendMorfosis ,
-		descripcion : "Activa tu morfosis"
-	} ,
-	"@morfosis:go" : {
-		handler : Comandos.sendMorfosisGo ,
-		descripcion : "Activa tu morfosis"
-	} ,
-	"@Kappa" : {
-		handler : Comandos.sendTwitchEmote ,
-		descripcion : "Kappa"
-	} ,
-	"@4Head" : {
-		handler : Comandos.sendTwitchEmote ,
-		descripcion : "4Head"
-	} ,
-	"@Kreygasm" : {
-		handler : Comandos.sendTwitchEmote ,
-		descripcion : "Kreygasm"
-	} ,
-	"@PogChamp" : {
-		handler : Comandos.sendTwitchEmote ,
-		descripcion : "PogChamp"
-	} ,
-	"@chipi" : {
-		handler : Comandos.sendChipi ,
-		descripcion : "Te mide la vaina"
-	} ,
-	"@denunciado" : {
-		handler : Comandos.sendDenunciado ,
-		descripcion : "Denunciado lince"
-	} ,
-	"@pokemon" : {
-		handler : Comandos.sendPokemon ,
-		descripcion : "Lanza una fusion random de pokemones"
-	} ,
-	"@hernanOn" : {
-		handler : Comandos.switchHernan(true) ,
-		descripcion : "Enciende subnormales"
-	} ,
-	"@hernanOff" : {
-		handler : Comandos.switchHernan(false) ,
-		descripcion : "Apaga subnormales"
-	} ,
-	"@help" : {
-		handler : function ( apiInstance , message , cb ) {
-			var self     = comandos;
-			var response = "";
-			for ( var property in self ) {
-				if ( self.hasOwnProperty(property) ) {
 
-					if ( self[ property ][ "descripcion" ] ) {
-						response += property + " : " + self[ property ][ "descripcion" ];
-						response += "\n";
-					}
-				}
-			}
-			return apiInstance.sendMessage(response , message.threadID , cb);
-		}
-	}
-};
-
-chatApi(credentials , { forceLogin : true } , function ( err , api ) {
+chatApi(credentials , { forceLogin : true } , function (err , api) {
 	if ( err ) {
 		throw err;
 	} else {
 
-		api.listen(function ( err , message ) {
+		api.listen(function (err , message) {
 				if ( err ) {
 					throw err;
 				} else {
-
 					var messageString = message.body || null;
-					if ( message.senderID != "0" ) {
+					if ( messageString && listComandos[ messageString ] ) {
+						listComandos[ messageString ].handler(api , message , function (err , response) {
+							if ( err ) {
+								throw err;
+							} else {
 
-						if ( messageString && comandos[ messageString ] ) {
-							comandos[ messageString ].handler(api , message , function ( err , response ) {
-								if ( err ) {
-									throw err;
-								} else {
-
-								}
-							});
-						}
+							}
+						});
 					}
 				}
 			}
 		);
 	}
-})
-;
+});

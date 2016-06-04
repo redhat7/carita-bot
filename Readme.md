@@ -18,8 +18,7 @@
 
 ### Linux
 
-    EMAIL=..@...
- 	PASS=xxxxxx
+    EMAIL=..@... PASS=xxxxxx node index.js
 
 ## Run
 
