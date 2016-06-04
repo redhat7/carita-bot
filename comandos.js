@@ -259,9 +259,11 @@ comandos.salvalo = function (apiInstance , message , cb) {
 };
 
 comandos.resucitar = function (apiInstance , message , cb) {
-	apiInstance.addUserToGroup(idSacrificado , message.threadID , function (err) {
-		if ( err ) {
-			console.error(err);
-		}
-	});
+	if ( idSacrificado ) {
+		apiInstance.addUserToGroup(idSacrificado , message.threadID , function (err) {
+			if ( err ) {
+				console.error(err);
+			}
+		});
+	}
 };
