@@ -2,7 +2,7 @@
 
 > Just for fun.
 
-## Add [caritabot](https://www.facebook.com/profile.php?id=100011311537652&fref=ts) to FB chat group and interact with!
+## Add [caritabot](https://www.facebook.com/profile.php?id=100014140447609&fref=nf) to FB chat group and interact with!
 
 # Development
 ## Install dependencies
