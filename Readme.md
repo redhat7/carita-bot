@@ -23,5 +23,6 @@
 ## Run
 
     node index
+    npm start
 
 
