@@ -1,8 +1,11 @@
-var chatApi      = require("facebook-chat-api");
-var listComandos = require("./list");
+require("dotenv").config();
+var chatApi       = require("facebook-chat-api");
+var listComandos  = require("./list");
+var twitchCommand = require("./twitch/twitch.js");
+
 
 var credentials = {
-	email : process.env.EMAIL ,
+	email    : process.env.EMAIL ,
 	password : process.env.PASS
 };
 
@@ -17,14 +20,16 @@ chatApi(credentials , { forceLogin : true } , function (err , api) {
 					throw err;
 				} else {
 					var messageString = message.body || null;
+					//Normal commands
 					if ( messageString && listComandos[ messageString ] ) {
 						listComandos[ messageString ].handler(api , message , function (err , response) {
 							if ( err ) {
 								throw err;
-							} else {
-
 							}
 						});
+					} else {
+						//Twitch commands
+						twitchCommand.sendEmote(api , message);
 					}
 				}
 			}

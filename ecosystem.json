@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "Carita-Bot",
+      "script": "index.js",
+      "exec_mode": "cluster",
+      "instances": "1",
+      "cron_restart": "00 00  */1 * *"
+    }
+  ]
+}

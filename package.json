@@ -8,6 +8,7 @@
   },
   "author": "Cshion",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "facebook-chat-api": "^1.2.0",
     "request": "^2.69.0"
   }

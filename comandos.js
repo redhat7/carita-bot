@@ -2,6 +2,8 @@ var fs      = require("fs");
 var request = require("request");
 var stream  = require('stream');
 
+
+
 var comandos = {};
 
 module.exports = comandos;
@@ -112,8 +114,8 @@ comandos.sendTwitchEmote = function (apiInstance , message , cb) {
 	var directory = __dirname + "/twitch/";
 	var emote     = message.body || null;
 	var emotes    = {
-		"@Kappa" : directory + "Kappa.jpg" ,
-		"@4Head" : directory + "4Head.jpg" ,
+		"@Kappa"    : directory + "Kappa.jpg" ,
+		"@4Head"    : directory + "4Head.jpg" ,
 		"@PogChamp" : directory + "PogChamp.jpg" ,
 		"@Kreygasm" : directory + "Kreygasm.jpg"
 	};
