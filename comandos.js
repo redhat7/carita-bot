@@ -2,8 +2,6 @@ var fs      = require("fs");
 var request = require("request");
 var stream  = require('stream');
 
-
-
 var comandos = {};
 
 module.exports = comandos;
@@ -29,11 +27,11 @@ comandos.sendAmor = function (apiInstance , message , cb) {
 
 			if ( user1_id == user2_id ) {
 
-				response = user1_id + " y " + user2_id + " se aman en secreto .. FOREVERALONE";
+				response = user1_id + " nadie te ama we .. FOREVERALONE";
 			} else {
 				response = user1_id + " y " + user2_id + " se aman en secreto";
 			}
-			
+
 			return apiInstance.sendMessage(response , message.threadID , cb);
 		} else {
 			return cb(null , null);
@@ -43,7 +41,7 @@ comandos.sendAmor = function (apiInstance , message , cb) {
 
 comandos.sendGarrita = function (apiInstance , message , cb) {
 	var garritaId = "144884792352454";
-	var response  = "Has activado el comando garrita , spameen la garrita perras";
+	var response  = "Has activado el comando garrita , spameen la garrita!!";
 	return apiInstance.sendMessage({ body : response , sticker : garritaId } , message.threadID , cb);
 };
 
@@ -57,14 +55,6 @@ comandos.getDado = function (apiInstance , message , cb) {
 			return apiInstance.sendMessage(response , message.threadID , cb);
 		}
 	});
-};
-
-comandos.sendCalla = function (apiInstance , message , cb) {
-	return apiInstance.sendMessage("Calla chupapinga" , message.threadID , cb);
-};
-
-comandos.sendCachudo = function (apiInstance , message , cb) {
-	return apiInstance.sendMessage("Calla cachudo" , message.threadID , cb);
 };
 
 comandos.sendCarita = function (apiInstance , message , cb) {
@@ -87,9 +77,6 @@ comandos.dailyLoli = function (apiInstance , message , cb) {
 
 };
 
-comandos.sendCojo       = function (apiInstance , message , cb) {
-	return apiInstance.sendMessage("Calla cojo de mierda" , message.threadID , cb)
-};
 comandos.sendMorfosisGo = function (apiInstance , message , cb) {
 	var directory = __dirname + "/morfosis/";
 	var file      = directory + "start.jpg";
@@ -110,7 +97,7 @@ comandos.sendMorfosis = function (apiInstance , message , cb) {
 	});
 };
 
-comandos.sendTwitchEmote = function (apiInstance , message , cb) {
+/*comandos.sendTwitchEmote = function (apiInstance , message , cb) {
 	var directory = __dirname + "/twitch/";
 	var emote     = message.body || null;
 	var emotes    = {
@@ -127,6 +114,7 @@ comandos.sendTwitchEmote = function (apiInstance , message , cb) {
 	}
 };
 
+
 comandos.sendChipi = function (apiInstance , message , cb) {
 	var medida   = parseInt(Math.random() * (50) + 1);
 	var senderId = message.senderID;
@@ -137,7 +125,7 @@ comandos.sendChipi = function (apiInstance , message , cb) {
 		}
 	});
 };
-
+*/
 comandos.sendDenunciado = function (apiInstance , message , cb) {
 
 	var directory = __dirname + "/denunciado/";
@@ -268,4 +256,20 @@ comandos.resucitar = function (apiInstance , message , cb) {
 			}
 		});
 	}
+};
+
+comandos.lunita = function (apiInstance , message , cb) {
+
+	var directory = __dirname + "/lunita/";
+
+	fs.readdir(directory , function (err , images) {
+		if ( images.length > 0 ) {
+			var randomInt = parseInt(Math.random() * (images.length));
+			var file      = directory + images[ randomInt ];
+			return apiInstance.sendMessage({ attachment : fs.createReadStream(file) } , message.threadID , cb);
+		} else {
+			return apiInstance.sendMessage({ body : "Antonchi  :'(" } , message.threadID , cb);
+		}
+	});
+
 };

@@ -5,8 +5,8 @@ var twitchCommand = require("./twitch/twitch.js");
 
 
 var credentials = {
-	email    : process.env.EMAIL ,
-	password : process.env.PASS
+	email    : -- ,
+	password : --
 };
 
 
