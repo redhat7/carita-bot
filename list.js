@@ -1,7 +1,12 @@
 var Comandos = require("./comandos");
 
 var list = {
-	"@carita"    : {
+	"lolis"	     :{
+		handler     : Comandos.dailyLoli ,
+		descripcion : "envia la loli papu"
+	} ,	
+	
+	"carita"    : {
 		handler     : Comandos.sendCarita ,
 		descripcion : "( ͡° ͜ʖ ͡°)"
 	} ,
@@ -9,7 +14,7 @@ var list = {
 		handler     : Comandos.getDado ,
 		descripcion : "Tira un dado"
 	} ,
-	"@lunita"   : {
+	"lunita"   : {
 		handler     : Comandos.lunita ,
 		descripcion : "Lunita is back!!!"
 	} ,
@@ -21,11 +26,11 @@ var list = {
 		handler     : Comandos.sendAmor ,
 		descripcion : "The love is in the air"
 	} ,
-	"@cama"        : {
+	"cama"        : {
 		handler     : Comandos.sendCama ,
 		descripcion : "Invoca al doti"
 	} ,
-	"@morfosis"    : {
+	"morfosis"    : {
 		handler     : Comandos.sendMorfosis ,
 		descripcion : "Activa tu morfosis"
 	} ,
@@ -33,11 +38,15 @@ var list = {
 		handler     : Comandos.sendMorfosisGo ,
 		descripcion : "Activa tu morfosis"
 	} ,
-	"@denunciado"  : {
+	"hernanOff"   :{
+		handler	    : Comandos.switchHernan(false),
+		descripcion : "Kickea al gil ese"
+	},
+	"denunciado"  : {
 		handler     : Comandos.sendDenunciado ,
 		descripcion : "Denunciado lince"
 	} ,
-	"@pokemon"     : {
+	"pokemon"     : {
 		handler     : Comandos.sendPokemon ,
 		descripcion : "Lanza una fusion random de pokemones"
 	} ,
@@ -49,7 +58,7 @@ var list = {
 		handler     : Comandos.resucitar ,
 		descripcion : "Regresa al we"
 	} ,
-	"@help"        : {
+	"@@help"        : {
 		handler : function (apiInstance , message , cb) {
 			var self     = list;
 			var response = "";
